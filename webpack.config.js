@@ -4,9 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const WebpackBar = require("webpackbar");
 
-const loadModeConfig = (env) => {
-  require(`./build-utils/${env.mode}.config`)(env);
-};
+const loadModeConfig = (env) =>
+  require(`./build-utils/${env.mode}.config.js`)(env);
 
 module.exports = (env) =>
   merge(
@@ -44,7 +43,7 @@ module.exports = (env) =>
           },
           {
             test: /\.hbs$/,
-            use: ["handlerbars-loader"],
+            use: ["handlebars-loader"],
           },
         ],
       },
@@ -54,5 +53,5 @@ module.exports = (env) =>
         new WebpackBar(),
       ],
     },
-    loadModeConfig(env)
+    loadModeConfig(env),
   );
